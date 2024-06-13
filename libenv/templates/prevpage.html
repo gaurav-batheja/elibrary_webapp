@@ -1,0 +1,30 @@
+{% extends "base2.html"%}
+{% block body %}
+    <div class="w-50 mx-auto p-4">
+        <h1 class="text-center">{{book.book_name}}</h1>
+        <p class="text-center">{{book.book_desc}}</p>
+        <h6 style="text-align: right;">By - {{book.book_author}} Page no.{{page_no+1}}</h6>
+
+    </div>
+    <div class="border rounded w-50 mx-auto p-4" style="margin-top: 2%; margin-bottom:8;background-color:white;">
+        <p>{% set text = curr_page.get_text() %} {{text}}</p>
+        </div>
+        {% set page_no=pages.index(curr_page)%}
+        
+    <div class="d-flex justify-content-center" style="text-align:center; margin-bottom:10%;">
+        {% if prev %} 
+        <a href="{{url_for('prevpage',book_id=book.book_id,page_no=page_no)}}"><svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+          </svg></a>
+          {% endif %}
+          {% if next %}
+        <a href="{{url_for('nextpage',book_id=book.book_id,page_no=page_no)}}"><svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+          </svg></a>
+          {% endif %}
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+{% endblock %}

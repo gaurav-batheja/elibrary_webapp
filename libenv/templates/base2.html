@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial_scale=150">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="icon" href="/static/logo.png" type="image/icon type">
+    <title>Read HUB</title>
+    <style>
+        .btn {
+            padding: .45rem 1.5rem .35rem;
+          }
+          
+          .gradient-custom {
+            background: -webkit-linear-gradient(to right, red, orange,orange);
+          
+            background: linear-gradient(to right, red, orange,orange)
+          }
+          .white {
+            color: rgb(255, 255, 255);
+          }
+          .white-bg {
+            background-color: rgba(245, 245, 245, 0.83);
+          }
+          body {
+            background-image: url("/static/bookbg.jpg");
+            background-color: #cccccc; /* Used if the image is unavailable */
+            height: auto; /* You must set a specified height */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover; /* Resize the background image to cover the entire container */
+          }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary gradient-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand white" href="{{url_for('home')}}">Read_Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+                  <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+                    <li class="nav-item text-center mx-2 mx-lg-1">
+                        <a class="nav-link white" href='{{url_for("viewbook")}}'>Books</a>
+                    </li>
+                    <li class="nav-item text-center mx-2 mx-lg-1">
+                        <a class="nav-link white" href='{{url_for("sections")}}'>Sections</a>
+                    </li>
+                    <li class="nav-item text-center mx-2 mx-lg-1">
+                        <a class="nav-link white" href='{{url_for("viewreq")}}'>Requests</a>
+                    </li>
+                </ul>
+                <form action="/search" method="POST" class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0 mx-auto">
+                    <input type="search" class="form-control" placeholder="Search" aria-label="Search" name = "query" required>
+                    <button class="btn btn-light" type="submit" data-mdb-ripple-color="dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                          </svg>
+                    </button>
+                  </form>
+                  {% block nav %}
+                  {% endblock %}
+                  <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+                  <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link white" href='{{url_for("logout")}}'>Logout</a>
+            </ul>
+                
+            </div>
+        </div>
+    </nav>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p class="flash_message" style="color: red; background-color:white; text-align:center; font-weight:bold;">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {%block body %}
+    {% endblock %}
+</body>
+
+</html>

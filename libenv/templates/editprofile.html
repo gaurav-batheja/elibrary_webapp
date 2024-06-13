@@ -1,0 +1,32 @@
+{% extends "base2.html"%}
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+<div class="card w-75 mx-auto text-dark white-bg" style="margin-top: 2rem;">
+        <div class="card-body"> 
+          <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "username" placeholder="{{user.user_name}}">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" name="email" placeholder="example@gmail.com" palceholder-{{user.user_mail}}>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="password">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password again</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="passwordagain" placeholder="Again if you wanna change">
+    </div>
+          <div class="mb-3">
+            <label class="form-label">Profile Pic</label>
+            <input type="file" class="form-control" id="formFile" name = "new_pic" accept="image/*">
+         </div>
+        </div>
+        <button type="submit" class="btn btn-outline-danger m-2 p-2">Edit Profile</button>
+      </form>
+
+
+{% endblock %}

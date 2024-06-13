@@ -1,0 +1,41 @@
+{% extends "base2.html"%}
+{% block body %}
+<form method="post">
+    <div class="w-75 border-round white-bg" style="margin-top: 2rem; margin-left: 13%; padding: 2rem;">
+        <div class="card-body"> 
+          <h5 class="card-title">Issue {{book.book_name}}</h5>
+          {% if req_type == 1 %}
+          <div>Read Only</div>
+          {% elif req_type ==2 %}
+          <div>Download Request , @ {{book.book_price}}  ,you will be redirected to payments page</div>
+          {% endif %}
+            <div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Book Date of Issue : {{ date_today }}</label>
+                </div>
+                {% if req_type == 1 %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">No. of days</label>
+                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "returndate" placeholder="For how many days?" required>
+                </div>
+                {% endif %}
+                
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1">Request Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="req_desc" maxlength="50" placeholder="any msg for us?"></textarea>
+          </div>
+                <p>Note: Book Issue can be revoked by librarian at any point, If borrower if found in violation of any kind</p>
+            </div>
+            {% if req_type == 1 %}
+            <button type="submit" class="btn btn-outline-danger m-1">Proceed</button>
+            {% elif req_type == 2 %}
+            <button type="submit" class="btn btn-outline-danger m-1">Pay {{book.book_price}}</button>
+            {% endif %}
+        </div>
+    </div>
+    
+</form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+{% endblock %}
